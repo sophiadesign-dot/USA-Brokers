@@ -1,0 +1,505 @@
+@use 'sass:color';
+
+/* Spacing: 1rem = 4px (see html font-size in index.scss). */
+
+$space-0: 0;
+$space-2xs: 2rem;
+$space-xs: 3rem;
+$space-sm: 4rem;
+$space-md: 4.5rem;
+$space-lg: 5rem;
+$space-3xl: 5.5rem;
+$space-4xl: 5.75rem;
+$space-5xl: 5.875rem;
+$space-6xl: 5.9375rem;
+$space-7xl: 5.96875rem;
+$space-8xl: 6rem;
+$space-9xl: 8rem;
+$space-10xl: 30rem;
+
+/* Asymmetric block-axis insets (1rem = 4px); reusable outside any page block. */
+$space-inset-block-start-xl: 37.5rem;
+$space-inset-block-end-md: 17.5rem;
+
+$font-weight-thin: 100;
+$font-weight-extralight: 200;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+$font-weight-black: 900;
+
+$font-weight-min: 100;
+$font-weight-max: 900;
+
+$font-family-open-sans: 'Open Sans', system-ui, sans-serif;
+$font-family-albert-sans: 'Albert Sans', system-ui, sans-serif;
+$font-family-poppins: 'Poppins', system-ui, sans-serif;
+$font-family-plus-jakarta-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+$font-family-sans: $font-family-open-sans;
+
+$transition-duration-default: 0.3s;
+$transition-timing-default: ease-in-out;
+
+$color-primary-dark: #1a2d4a;
+$color-primary-dark-hover: color.scale($color-primary-dark, $lightness: -8%);
+$color-text-white: #ffffff;
+$color-navy: #0b1842;
+/*
+ * Logistics: section bg #0B1842; panel border #2A4485 з прозорістю.
+ */
+$color-logistics-section-bg: $color-navy;
+$color-logistics-panel-fill-start: #101f4a;
+$color-logistics-panel-fill-end: $color-navy;
+$color-logistics-panel-border-solid: #2a4485;
+$opacity-logistics-panel-border: 0.55;
+$color-logistics-panel-border: color.change(
+  $color-logistics-panel-border-solid,
+  $alpha: $opacity-logistics-panel-border
+);
+$color-logistics-description: #94a3b8;
+$color-text-muted: rgba(255, 255, 255, 0.92);
+$color-input-border: #d3d3d3;
+$color-input-border-hover: #c6c6c6;
+$color-form-bg: #ffffff;
+$color-placeholder: #969696;
+$color-input-text: #212b36;
+$color-input-soft: #bac8f5;
+$color-input-soft-bg: transparent;
+$color-input-soft-border-hover: rgba(186, 200, 245, 0.85);
+$color-text-body: #1f2937;
+$color-text-about-body: #051f38;
+$color-link: #1a2d4a;
+$color-checkbox-label-link: #313f45;
+$color-error: #b91c1c;
+
+$shadow-form-card: 0 16px 48px rgba(15, 23, 42, 0.22);
+
+$shadow-dropdown-panel: 0 10px 28px rgba(15, 23, 42, 0.14);
+$color-dropdown-border: #ececec;
+$color-dropdown-option-hover: #f4f5f6;
+$color-dropdown-divider: #ececec;
+$dropdown-panel-offset: 6px;
+$dropdown-panel-padding-block: 4px;
+$dropdown-panel-padding-inline: 8px;
+$dropdown-option-padding-y: 12px;
+$dropdown-option-padding-x: 12px;
+$dropdown-option-border-radius: 6px;
+
+$radius-sm: 2rem;
+$radius-md: 3rem;
+$radius-lg: 4rem;
+
+/* Inputs, textarea, dropdown trigger/panel, checkbox — literal px (independent of html font-size). */
+$radius-form-field: 4px;
+
+$form-padding: 8rem;
+$form-field-gap: 4rem;
+$space-form-error-margin-top: 0.5rem;
+$hero-gap: 10rem;
+
+/* Form controls (html font-size 4px → 1rem = 4px): 12rem = 48px, 24rem = 96px */
+$size-form-control-height: 12rem;
+$size-form-textarea-height: 24rem;
+
+@mixin interactive-transition {
+  transition: all $transition-duration-default $transition-timing-default;
+}
+
+/* Breakpoints (desktop-first, max-width) */
+$breakpoint-grid-lg: 1100px;
+$breakpoint-tablet: 900px;
+$breakpoint-tablet-sm: 768px;
+$breakpoint-mobile: 640px;
+
+@mixin below($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin section-background-overlay {
+  position: absolute;
+  inset: $space-0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.55) 0%,
+    rgba(15, 23, 42, 0.25) 45%,
+    rgba(15, 23, 42, 0.45) 100%
+  );
+}
+
+@mixin section-background-overlay-dark {
+  position: absolute;
+  inset: $space-0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.75) 0%,
+    rgba(15, 23, 42, 0.55) 45%,
+    rgba(15, 23, 42, 0.7) 100%
+  );
+}
+
+$size-logo-width: 23.5rem; /* 94px @ 4px/rem */
+$size-logo-height: 12rem; /* 48px @ 4px/rem */
+
+$space-header-padding-block: 4rem; /* 16px @ 4px/rem */
+
+$size-button-max-height: 12rem;
+$radius-button: 1.5rem;
+
+$button-variant-default-bg: $color-navy;
+$button-variant-default-border: #272727;
+$button-variant-default-fg: $color-text-white;
+$button-variant-default-icon: $color-text-white;
+$button-variant-default-bg-hover: color.scale($color-navy, $lightness: 6%);
+
+$button-variant-accent-bg: #5875f5;
+$button-variant-accent-border: #5875f5;
+$button-variant-accent-fg: $color-text-white;
+$button-variant-accent-icon: $color-text-white;
+$button-variant-accent-bg-hover: color.scale(#5875f5, $lightness: -8%);
+
+$button-trail-hover-nudge-x: -50%;
+
+$line-height-body: 1.5;
+$line-height-density: 100%;
+
+$text-size-xs: 3rem;
+$text-size-s: 4rem;
+$text-size-m: 5rem;
+
+/* Section headlines (1rem = 4px): 48/60px */
+$text-size-section-headline: 12rem;
+$text-line-section-headline: 15rem;
+
+$text-size-about-headline: $text-size-section-headline;
+$text-line-about-headline: $text-line-section-headline;
+$text-size-about-body: 4.5rem;
+$text-line-about-body: 6rem;
+$text-size-stat-value: 10rem;
+$text-line-stat-value: 14rem;
+$text-size-stat-label: 3.75rem;
+$text-line-stat-label: 6rem;
+$text-size-form-label: $space-2xs;
+$text-size-form-control: $space-sm;
+$text-size-form-error: $space-2xs;
+
+$text-display-size: 14.5rem;
+$text-display-line-height: 15rem;
+$text-lead-size: 5rem;
+$text-lead-line-height: 6rem;
+$letter-spacing-display-tight: -0.03em;
+
+/* Logistics intro (1rem = 4px): title 54/60px, description 18/24px */
+$text-size-logistics-title: 13.5rem;
+$text-line-logistics-title: 15rem;
+$text-size-logistics-description: 4.5rem;
+$text-line-logistics-description: 6rem;
+$letter-spacing-logistics-description: 0;
+$text-size-logistics-service: 4rem;
+$text-line-logistics-service: 6rem;
+$letter-spacing-logistics-service: 0;
+
+$space-gutter-lg: 12rem;
+$space-gutter-md: 6rem;
+
+/* Responsive layout & typography */
+$space-page-padding-inline-mobile: $space-8xl;
+$space-section-padding-block-mobile: $space-gutter-lg;
+$space-inset-block-start-xl-mobile: 25rem; /* 100px */
+$space-inset-block-end-md-mobile: 10rem; /* 40px */
+$text-display-size-mobile: 10rem; /* 40px */
+$text-display-line-height-mobile: 11rem;
+$text-size-section-headline-mobile: 9rem; /* 36px */
+$text-line-section-headline-mobile: 11rem;
+$size-logo-width-mobile: 18rem; /* 72px */
+$size-logo-height-mobile: 9.25rem; /* 37px */
+
+$space-about-stats-gap: 9rem;
+
+$color-text-soft: #eef0f4;
+
+$border-width-none: 0;
+$border-width-hairline: 1px;
+$border-width-strong: 2px;
+
+$color-form-caption: #83888a;
+$text-size-form-caption: 3.5rem;
+
+$opacity-hr: 0.15;
+
+$focus-outline-width: 2rem;
+$focus-outline-offset: 2rem;
+
+$z-index-top: 9999;
+
+$layout-page-max-width: 1440px;
+$layout-section-inner-max-width: 1200px;
+$space-section-inner-padding-inline: 10rem; /* 40px @ 4px/rem */
+$space-section-inner-padding-inline-mobile: $space-8xl; /* 24px @ 4px/rem */
+$space-section-inner-padding-block-tablet: 10rem; /* 40px @ 4px/rem */
+
+/* Terms page */
+$layout-terms-content-max-width: 660px;
+$space-terms-main-padding-block-start: 30rem; /* 120px @ 4px/rem */
+$space-terms-main-padding-block-end: 25rem; /* 100px @ 4px/rem */
+$text-size-terms-title: 11rem; /* 44px @ 4px/rem */
+$text-line-terms-title: 15rem; /* 60px @ 4px/rem */
+$text-size-terms-meta: 3.5rem; /* 14px @ 4px/rem */
+$text-line-terms-meta: 140%;
+$color-terms-divider: #2a4485;
+$space-terms-updated-date-offset: 2rem; /* 8px @ 4px/rem */
+$space-terms-divider-margin-top: 10rem; /* 40px @ 4px/rem */
+$space-terms-divider-margin-bottom: 10rem; /* 40px @ 4px/rem */
+$text-size-terms-section-title: 5.5rem; /* 22px @ 4px/rem */
+$text-line-terms-section-title: 100%;
+$space-terms-sections-gap: 20rem; /* 80px @ 4px/rem */
+$space-terms-section-text-gap: 3rem; /* 12px @ 4px/rem */
+$layout-main-hero-max-height: 720px;
+$layout-about-max-height: 580px;
+$layout-about-right-column-width: 700px;
+$layout-about-left-column-width: 452px;
+
+$space-about-content-padding-block: 12rem;
+$space-about-content-padding-inline: $space-10xl;
+$space-about-social-gap: $space-8xl;
+$space-about-column-stack-gap: $space-gutter-lg;
+
+$size-about-social-proof-width: 70rem;
+$size-about-social-proof-height: 15.5rem;
+
+/* Logistics section outer padding (1rem = 4px): 90px / 120px / 160px */
+$space-logistics-padding-block-start: 22.5rem;
+$space-logistics-padding-inline: 30rem;
+$space-logistics-padding-block-end: 40rem;
+
+$space-logistics-padding-block-start-mobile: $space-9xl;
+$space-logistics-padding-block-end-mobile: $space-10xl;
+$space-logistics-padding-inline-mobile: $space-8xl;
+
+$layout-logistics-content-max-width: 710px;
+$layout-logistics-panel-columns: 3;
+$layout-logistics-panel-column-track: minmax(0, 1fr);
+
+$radius-logistics-panel: 2.25rem; /* 9px @ 4px/rem */
+$size-logistics-icon: 12rem;
+$blur-logistics-panel: 4px;
+/* Vertical dividers: centered, shorter than cell (Figma) */
+$size-logistics-divider-height-ratio: 58%;
+$size-logistics-divider-width-ratio-mobile: 68%;
+$layout-logistics-panel-grid-mobile: 1fr;
+
+/* Маска верхнього лівого кута рамки (розмір ≈ radius + невеликий запас) */
+$size-logistics-panel-corner-mask-expand: 3px;
+$z-index-logistics-panel-corner-mask: 1;
+
+$space-logistics-intro-gap: 4rem;
+/* 64px @ 4px/rem — відступ між інтро та панеллю */
+$space-logistics-intro-margin-bottom: 16rem;
+$mix-blend-mode-logistics-icon: screen;
+
+$breakpoint-logistics-mobile: $breakpoint-tablet-sm;
+
+/* Services section */
+$color-services-card-bg: #f5f7ff;
+$color-services-card-title: #0b1842;
+$color-services-description: #192a61;
+$text-size-services-headline: $text-size-section-headline;
+$text-line-services-headline: $text-line-section-headline;
+$text-size-services-card-title: 7rem; /* 28px @ 4px/rem */
+$text-line-services-card-title: 10rem; /* 40px @ 4px/rem */
+$letter-spacing-services-card-title: -0.03em;
+$text-size-services-card-description: 4rem; /* 16px @ 4px/rem */
+$text-line-services-card-description: 6rem; /* 24px @ 4px/rem */
+$letter-spacing-services-card-description: 0;
+$space-services-padding-block: 25rem; /* 100px @ 4px/rem */
+$space-services-headline-margin-bottom: 12rem; /* 48px @ 4px/rem */
+$space-services-cards-gap: 6rem;
+$space-services-icon-text-gap: 3.5rem; /* 14px @ 4px/rem */
+$space-services-card-text-gap: 2rem; /* 8px @ 4px/rem */
+$space-services-card-padding: 6rem; /* 24px @ 4px/rem */
+$radius-services-card: 2rem;
+$size-services-icon: 13.5rem; /* 54px @ 4px/rem */
+$layout-services-columns: 4;
+
+/* Benefits section */
+$color-benefits-card-bg: #f5f7ff;
+$color-benefits-card-overlay: #0b1842a3;
+$blur-benefits-card-image: 2px;
+$text-size-benefits-headline: $text-size-section-headline;
+$text-line-benefits-headline: $text-line-section-headline;
+$text-size-benefits-card-number: 6rem; /* 24px @ 4px/rem */
+$text-line-benefits-card-number: 8rem; /* 32px @ 4px/rem */
+$text-size-benefits-card-title: 9.5rem; /* 38px @ 4px/rem */
+$text-line-benefits-card-title: 100%;
+$letter-spacing-benefits-card-title: -0.03em; /* -3% */
+$text-size-benefits-card-description: 4rem; /* 16px @ 4px/rem */
+$text-line-benefits-card-description: 6rem; /* 24px @ 4px/rem */
+$letter-spacing-benefits-card-description: -0.03em; /* -3% */
+$space-benefits-padding-block: 25rem;
+$space-benefits-headline-margin-bottom: 12rem;
+$space-benefits-cards-gap: 6rem;
+$space-benefits-card-padding: 6rem; /* 24px @ 4px/rem */
+$space-benefits-card-number-gap: 2rem;
+$space-benefits-card-text-gap: 4rem; /* 16px @ 4px/rem */
+$radius-benefits-card: 2rem;
+$layout-benefits-columns: 3;
+$height-benefits-featured-card: 91rem; /* 364px @ 4px/rem */
+$height-benefits-standard-card: 53.75rem; /* 215px @ 4px/rem */
+
+/* Questions section */
+$space-questions-padding-block: 25rem; /* 100px @ 4px/rem */
+$space-questions-copy-gap: $space-sm; /* 16px @ 4px/rem — title → description */
+$space-questions-form-checkbox-gap: $space-sm; /* 16px — inputs → checkbox */
+$space-questions-form-submit-gap: $space-gutter-md; /* 24px — checkbox → button */
+$space-questions-input-padding: $space-xs; /* 12px — input inner padding */
+$space-questions-copy-padding-block: 6rem; /* 24px @ 4px/rem */
+$layout-questions-copy-max-width: 520px;
+$color-questions-decor-lines: #2a4485;
+$opacity-questions-decor: 0.35;
+$opacity-questions-decor-mobile: 0.2;
+/* Questions copy (1rem = 4px): title 54/60px, description 18/24px */
+$text-size-questions-headline: 13.5rem;
+$text-line-questions-headline: 15rem;
+$letter-spacing-questions-headline: -0.03em;
+$text-size-questions-description: 4.5rem;
+$text-line-questions-description: 6rem;
+$letter-spacing-questions-description: 0;
+$color-questions-description: #d2d6e3;
+
+/* Request quote (footer brand block) */
+$space-request-quote-logo-tagline-gap: 3.5rem; /* 14px */
+$space-request-quote-tagline-button-gap: 6rem; /* 24px */
+$layout-request-quote-tagline-max-width: 120rem; /* 480px @ 4px/rem */
+
+/* Carousel */
+$space-carousel-gap: 6rem;
+$space-carousel-nav-gap: 3rem;
+$size-carousel-nav-button: 12rem;
+$size-carousel-nav-icon: 7.75rem;
+$color-carousel-nav-border: $color-text-white;
+$color-carousel-nav-border-hover: #c4c4c4;
+$opacity-carousel-nav-icon-hover: 0.72;
+
+/* Our clients feedback section */
+$color-clients-feedback-section-bg: $color-navy;
+$color-clients-feedback-card-bg: rgba(14, 52, 175, 0.3);
+$blur-clients-feedback-card: 6px;
+$color-clients-feedback-quote: #4e77ff;
+$color-clients-feedback-text: #eef0f4;
+$color-clients-feedback-role: #bac8f5;
+$text-size-clients-feedback-headline: $text-size-section-headline;
+$text-line-clients-feedback-headline: $text-line-section-headline;
+$text-size-clients-feedback-quote: 4rem;
+$text-line-clients-feedback-quote: 6rem;
+$text-size-clients-feedback-name: 4rem;
+$text-line-clients-feedback-name: 6rem;
+$text-size-clients-feedback-role: 3.75rem;
+$text-line-clients-feedback-role: 6rem;
+$space-clients-feedback-padding-block: 25rem;
+$space-clients-feedback-header-gap: 12rem;
+$space-clients-feedback-card-padding: 6rem;
+$space-clients-feedback-card-gap: 6rem;
+$space-clients-feedback-author-gap: $space-0;
+$radius-clients-feedback-card: 2rem;
+$offset-clients-feedback-quote-mark-hover: 2.5rem;
+$rotate-clients-feedback-quote-mark-hover: 10deg;
+$layout-clients-feedback-card-width: 95rem;
+$height-clients-feedback-card: 72rem;
+
+/* FAQ section */
+$color-faq-decor-lines: #2a4485;
+$opacity-faq-decor: 0.35;
+$opacity-faq-decor-mobile: 0.2;
+$space-faq-padding-block: 25rem;
+$space-faq-copy-padding-block: 6rem;
+$space-faq-trail-gap: 12rem;
+$layout-faq-copy-max-width: 520px;
+$text-size-faq-headline: $text-size-section-headline;
+$text-line-faq-headline: $text-line-section-headline;
+
+/* Contact us section (1rem = 4px): 64px top / 76px bottom */
+$space-contact-us-padding-block-start: 16rem;
+$space-contact-us-padding-block-end: 19rem;
+
+/* Contact us form (1rem = 4px) */
+$space-contact-form-padding: $form-padding; /* 32px */
+$space-contact-form-title-gap: $space-gutter-md; /* 24px */
+$space-contact-form-field-gap: $space-xs; /* 12px */
+$space-contact-form-fields-checkbox-gap: $space-sm; /* 16px */
+$space-contact-form-checkbox-button-gap: $space-gutter-md; /* 24px */
+$size-contact-form-checkbox-icon-width: 2.25rem; /* 9px */
+$size-contact-form-checkbox-icon-height: 1.5rem; /* 6px */
+$text-size-contact-us-feature: 4.5rem; /* 18px */
+$text-line-contact-us-feature: 6.5rem; /* 26px */
+$space-contact-us-features-gap: $space-sm; /* 16px */
+$space-contact-us-feature-gap: $space-xs; /* 12px */
+$space-contact-us-headline-features-gap: 8rem; /* 32px */
+$space-contact-us-layout-gap: 24rem; /* 96px */
+$text-size-contact-form-title: 5rem; /* 20px */
+$text-line-contact-form-title: 140%;
+$color-contact-form-title: #192a61;
+
+/* Accordion */
+$color-accordion-item-bg: #f5f7ff;
+$color-accordion-question: #1e1e1e;
+$color-accordion-answer: #6d6d6d;
+$color-accordion-divider: #d3d3d3;
+$color-accordion-icon: #1e1e1e;
+$color-accordion-icon-border: #1e1e1e;
+$space-accordion-items-gap: 4rem; /* 16px @ 4px/rem */
+$space-accordion-item-padding-block: 4rem; /* 16px @ 4px/rem */
+$space-accordion-item-padding-inline: 6rem; /* 24px @ 4px/rem */
+$space-accordion-trigger-gap: 4rem;
+$space-accordion-divider-gap: 4rem;
+$radius-accordion-item: 3rem;
+$size-accordion-icon-button: 8rem; /* 32px @ 4px/rem */
+$size-accordion-icon: 6rem; /* 24px @ 4px/rem */
+$offset-accordion-icon-hover: 0.5rem; /* 4px @ 4px/rem */
+$transition-duration-accordion-panel: 0.5s;
+$transition-duration-accordion-line: 0.4s;
+$transition-stagger-accordion-line: 0.07s;
+$transition-easing-accordion: cubic-bezier(0.4, 0, 0.2, 1);
+$text-size-accordion-question: 5rem; /* 20px @ 4px/rem */
+$text-line-accordion-question: 8rem; /* 32px @ 4px/rem */
+$letter-spacing-accordion-question: 0;
+$text-size-accordion-answer: 4rem; /* 16px @ 4px/rem */
+$text-line-accordion-answer: 6rem; /* 24px @ 4px/rem */
+$letter-spacing-accordion-answer: 0;
+
+/* Footer links (company + contact columns) */
+$space-footer-links-columns-gap: 18.5rem; /* 74px */
+$space-footer-links-title-gap: 6rem; /* 24px */
+$space-footer-links-item-gap: 4rem; /* 16px */
+$size-footer-links-contact-icon: 6.5rem; /* 26px */
+$color-footer-links-heading: #667085;
+$text-size-footer-links-heading: 4.5rem; /* 18px */
+$text-line-footer-links-heading: 5rem; /* 20px */
+$text-size-footer-links-nav: 4.5rem; /* 18px */
+$text-line-footer-links-nav: 6.5rem; /* 26px */
+
+/* Footer */
+$color-footer-bg: $color-navy;
+$color-footer-muted: $color-logistics-description;
+$color-footer-divider: rgba(186, 200, 245, 0.2);
+$space-footer-padding-block: 10rem; /* 40px */
+$space-footer-padding-inline: 30rem; /* 120px */
+$space-footer-columns-gap: 24rem; /* 96px */
+$space-footer-bottom-gap: 15rem; /* 60px — top offset */
+$space-footer-bottom-legal-gap: 10rem; /* 40px */
+$color-footer-bottom-link: #98a2b3;
+$text-size-footer-bottom-link: 4rem; /* 16px */
+$text-line-footer-bottom-link: 5.5rem; /* 22px */
+
+$width-full: 100%;
+$height-full: 100%;
+$min-height-full: 100%;
+$max-height-full: 100%;

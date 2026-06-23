@@ -1,0 +1,96 @@
+@use 'assets/styles/variables' as *;
+
+.footer-bottom {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: $space-gutter-md;
+  width: $width-full;
+  margin-block-start: $space-footer-bottom-gap;
+
+  &-legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-footer-bottom-legal-gap;
+  }
+
+  &-link,
+  &-back-to-top {
+    @include interactive-transition;
+    text-decoration: none;
+  }
+
+  &-link {
+    font-family: $font-family-poppins;
+    font-size: $text-size-footer-bottom-link;
+    font-weight: $font-weight-normal;
+    line-height: $text-line-footer-bottom-link;
+    letter-spacing: 0;
+    color: $color-footer-bottom-link;
+
+    &:hover {
+      color: $color-text-white;
+    }
+  }
+
+  &-back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 2rem; /* 8px */
+    font-family: $font-family-open-sans;
+    font-size: $text-size-s;
+    line-height: $line-height-body;
+    justify-self: center;
+    padding: $space-0;
+    border: $border-width-none;
+    background: none;
+    cursor: pointer;
+    color: $color-footer-muted;
+    font-weight: $font-weight-normal;
+
+    &:hover {
+      color: $color-text-white;
+    }
+  }
+
+  &-back-to-top-arrow {
+    display: inline-block;
+    transition: transform $transition-duration-default $transition-timing-default;
+  }
+
+  &-back-to-top:hover &-back-to-top-arrow {
+    transform: translateY(-1rem); /* 4px */
+  }
+
+  &-copyright {
+    justify-self: end;
+    margin: $space-0;
+    font-family: $font-family-poppins;
+    font-size: $text-size-footer-bottom-link;
+    font-weight: $font-weight-normal;
+    line-height: $text-line-footer-bottom-link;
+    letter-spacing: 0;
+    color: $color-footer-bottom-link;
+    text-align: right;
+  }
+
+  @include below($breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+
+    &-legal {
+      justify-content: center;
+    }
+
+    &-back-to-top {
+      justify-self: center;
+    }
+
+    &-copyright {
+      justify-self: center;
+      text-align: center;
+    }
+  }
+}

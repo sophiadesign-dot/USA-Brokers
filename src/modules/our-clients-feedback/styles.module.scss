@@ -1,0 +1,101 @@
+@use 'assets/styles/variables' as *;
+
+.clients-feedback {
+  box-sizing: border-box;
+  width: $width-full;
+  overflow-x: hidden;
+  background-color: $color-clients-feedback-section-bg;
+
+  &-content {
+    box-sizing: border-box;
+    width: $width-full;
+    padding-block: $space-clients-feedback-padding-block;
+    padding-inline: $space-0;
+  }
+
+  &-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: $space-clients-feedback-header-gap;
+    width: $width-full;
+    min-width: 0;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-gutter-md;
+    width: $width-full;
+    min-width: 0;
+  }
+
+  &-slide {
+    display: flex;
+    width: $layout-clients-feedback-card-width;
+    max-width: 100%;
+  }
+
+  &-card {
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-clients-feedback-card-gap;
+    width: $width-full;
+    padding: $space-clients-feedback-card-padding;
+    border-radius: $radius-clients-feedback-card;
+    background-color: $color-clients-feedback-card-bg;
+    backdrop-filter: blur($blur-clients-feedback-card);
+    -webkit-backdrop-filter: blur($blur-clients-feedback-card);
+  }
+
+  &-card:hover &-quote-mark {
+    transform: translateX($offset-clients-feedback-quote-mark-hover)
+      rotate($rotate-clients-feedback-quote-mark-hover);
+  }
+
+  &-quote-mark {
+    @include interactive-transition;
+    display: block;
+    flex-shrink: 0;
+    width: 10.75rem;
+    height: 9.5rem;
+    transform-origin: left top;
+  }
+
+  &-quote {
+    margin: $space-0;
+  }
+
+  &-author {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-clients-feedback-author-gap;
+    width: $width-full;
+    margin-top: auto;
+  }
+
+  &-name {
+    margin: $space-0;
+  }
+
+  @include below($breakpoint-tablet) {
+    &-content {
+      padding-block: $space-section-inner-padding-block-tablet;
+    }
+
+    &-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @include below($breakpoint-mobile) {
+    &-slide {
+      max-width: 100%;
+    }
+  }
+}

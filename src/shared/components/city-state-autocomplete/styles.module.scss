@@ -1,0 +1,152 @@
+@use 'assets/styles/variables' as *;
+
+.autocomplete {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2xs;
+  width: 100%;
+
+  &-label {
+    display: block;
+  }
+
+  &-field {
+    position: relative;
+    width: 100%;
+  }
+
+  &-control {
+    @include interactive-transition;
+    box-sizing: border-box;
+    width: 100%;
+    height: $size-form-control-height;
+    min-height: $size-form-control-height;
+    padding: $space-0 $space-md;
+    border: 1px solid $color-input-border;
+    border-radius: $radius-form-field;
+    font-family: $font-family-sans;
+    font-size: $space-sm;
+    line-height: calc(#{$size-form-control-height} - 2px);
+    color: $color-input-text;
+    background-color: $color-form-bg;
+
+    &::placeholder {
+      color: $color-placeholder;
+    }
+
+    &:hover {
+      border-color: $color-input-border-hover;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary-dark;
+      box-shadow: 0 0 0 1px $color-primary-dark;
+    }
+
+    &--error {
+      border-color: $color-error;
+
+      &:hover {
+        border-color: $color-error;
+      }
+
+      &:focus {
+        border-color: $color-error;
+        box-shadow: 0 0 0 1px $color-error;
+      }
+    }
+
+    &--variant-soft {
+      color: $color-input-soft;
+      background-color: $color-input-soft-bg;
+      border-color: $color-input-soft;
+
+      &::placeholder {
+        color: $color-input-soft;
+      }
+
+      &:hover {
+        border-color: $color-input-soft-border-hover;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $color-input-soft;
+        box-shadow: 0 0 0 1px $color-input-soft;
+      }
+    }
+  }
+
+  &-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: $z-index-top;
+    margin: $space-0;
+    margin-top: $dropdown-panel-offset;
+    padding: $dropdown-panel-padding-block $dropdown-panel-padding-inline;
+    list-style: none;
+    border: 1px solid $color-dropdown-border;
+    border-radius: $radius-form-field;
+    background-color: $color-form-bg;
+    box-shadow: $shadow-dropdown-panel;
+    max-height: 40vh;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $transition-duration-default $transition-timing-default;
+
+    &--visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &-option {
+    margin: $space-0;
+    padding: $space-0;
+    cursor: pointer;
+
+    &--divided &-inner {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: $space-0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 98%;
+        height: 1px;
+        background-color: $color-dropdown-divider;
+      }
+    }
+
+    &-inner {
+      @include interactive-transition;
+      width: 100%;
+      padding: $dropdown-option-padding-y $dropdown-option-padding-x;
+      border-radius: $dropdown-option-border-radius;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    &--highlighted &-inner,
+    &:hover &-inner {
+      background-color: $color-dropdown-option-hover;
+    }
+  }
+
+  &-error {
+    position: absolute;
+    top: 100%;
+    left: $space-0;
+    right: $space-0;
+    z-index: 2;
+    margin-top: $space-form-error-margin-top;
+    text-align: right;
+    pointer-events: none;
+  }
+}

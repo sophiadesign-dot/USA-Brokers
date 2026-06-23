@@ -1,0 +1,85 @@
+@use 'assets/styles/variables' as *;
+
+.services {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: $width-full;
+  overflow-x: hidden;
+  background-color: $color-form-bg;
+  background-image: none;
+
+  &-content {
+    box-sizing: border-box;
+    width: $width-full;
+    padding-block: $space-services-padding-block;
+    padding-inline: $space-0;
+  }
+
+  &-headline {
+    margin-bottom: $space-services-headline-margin-bottom;
+    overflow-wrap: break-word;
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat($layout-services-columns, minmax(0, 1fr));
+    gap: $space-services-cards-gap;
+    width: $width-full;
+  }
+
+  &-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    padding: $space-services-card-padding;
+    border-radius: $radius-services-card;
+    background-color: $color-services-card-bg;
+  }
+
+  &-card-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: $size-services-icon;
+    height: $size-services-icon;
+    margin-bottom: $space-services-icon-text-gap;
+
+    &-img {
+      display: block;
+      width: $width-full;
+      height: $height-full;
+      object-fit: contain;
+    }
+  }
+
+  &-card-title {
+    overflow-wrap: break-word;
+    margin-bottom: $space-services-card-text-gap;
+  }
+
+  @include below($breakpoint-grid-lg) {
+    &-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @include below($breakpoint-tablet) {
+    &-content {
+      padding-block: $space-section-inner-padding-block-tablet;
+    }
+  }
+
+  @include below($breakpoint-mobile) {
+    &-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &-card {
+      align-items: center;
+      text-align: center;
+    }
+  }
+}

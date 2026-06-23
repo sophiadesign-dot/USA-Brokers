@@ -1,0 +1,12 @@
+@use 'assets/styles/variables' as *;
+
+.link {
+  @include interactive-transition;
+  font-weight: $font-weight-semibold;
+  color: $color-link;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

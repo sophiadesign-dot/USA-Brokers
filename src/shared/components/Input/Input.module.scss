@@ -1,0 +1,117 @@
+@use 'assets/styles/variables' as *;
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2xs;
+  width: 100%;
+
+  &-label {
+    display: block;
+  }
+
+  &-shell {
+    position: relative;
+    width: 100%;
+  }
+
+  &-control {
+    @include interactive-transition;
+    box-sizing: border-box;
+    width: 100%;
+    height: $size-form-control-height;
+    min-height: $size-form-control-height;
+    padding: $space-0 $space-md;
+    border: 1px solid $color-input-border;
+    border-radius: $radius-form-field;
+    font-family: $font-family-sans;
+    font-size: $space-sm;
+    line-height: calc(#{$size-form-control-height} - 2px);
+    color: $color-input-text;
+    background-color: $color-form-bg;
+
+    &::placeholder {
+      color: $color-placeholder;
+    }
+
+    &:hover {
+      border-color: $color-input-border-hover;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary-dark;
+      box-shadow: 0 0 0 1px $color-primary-dark;
+    }
+
+    &--error {
+      border-color: $color-error;
+
+      &:hover {
+        border-color: $color-error;
+      }
+
+      &:focus {
+        border-color: $color-error;
+        box-shadow: 0 0 0 1px $color-error;
+      }
+    }
+
+    &--variant-soft {
+      color: $color-input-soft;
+      background-color: $color-input-soft-bg;
+      border-color: $color-input-soft;
+
+      &::placeholder {
+        color: $color-input-soft;
+      }
+
+      &:hover {
+        border-color: $color-input-soft-border-hover;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $color-input-soft;
+        box-shadow: 0 0 0 1px $color-input-soft;
+      }
+    }
+  }
+
+  &-error {
+    position: absolute;
+    top: 100%;
+    left: $space-0;
+    right: $space-0;
+    z-index: 1;
+    margin-top: $space-form-error-margin-top;
+    text-align: right;
+    pointer-events: none;
+  }
+
+  textarea#{&}-control {
+    box-sizing: border-box;
+    height: $size-form-textarea-height;
+    min-height: $size-form-textarea-height;
+    padding: $space-sm $space-md;
+    line-height: $line-height-body;
+    resize: none;
+    overflow-y: auto;
+  }
+
+  /* Higher specificity than variant styles so error border wins for textarea & input. */
+  textarea#{&}-control#{&}-control--error,
+  input#{&}-control#{&}-control--error {
+    border-color: $color-error;
+
+    &:hover {
+      border-color: $color-error;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $color-error;
+      box-shadow: 0 0 0 1px $color-error;
+    }
+  }
+}

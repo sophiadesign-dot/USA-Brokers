@@ -1,0 +1,44 @@
+@use 'assets/styles/variables' as *;
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $width-full;
+  z-index: $z-index-top;
+  padding-inline: $space-section-inner-padding-inline;
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $space-sm;
+    width: $width-full;
+    max-width: $layout-section-inner-max-width;
+    padding-block: $space-header-padding-block;
+    padding-inline: $space-0;
+  }
+
+  &-logo {
+    display: block;
+    width: $size-logo-width;
+    height: $size-logo-height;
+    object-fit: contain;
+  }
+
+  @include below($breakpoint-mobile) {
+    padding-inline: $space-section-inner-padding-inline-mobile;
+
+    &-content {
+      padding-block: $space-sm;
+    }
+
+    &-logo {
+      width: $size-logo-width-mobile;
+      height: $size-logo-height-mobile;
+    }
+  }
+}

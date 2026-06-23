@@ -1,0 +1,43 @@
+@use 'assets/styles/variables' as *;
+
+.trail-icon {
+  @include interactive-transition;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &--primary {
+    color: $color-text-white;
+  }
+
+  &--secondary {
+    color: $color-navy;
+  }
+
+  &-svg {
+    display: block;
+    width: 12px;
+    height: 12px;
+  }
+
+  &--loading &-svg {
+    animation: trail-icon-pulse 1.2s ease-in-out infinite;
+  }
+
+  &-circle {
+    fill: none;
+  }
+}
+
+@keyframes trail-icon-pulse {
+  0%,
+  100% {
+    width: 12px;
+    height: 12px;
+  }
+
+  50% {
+    width: 18px;
+    height: 18px;
+  }
+}

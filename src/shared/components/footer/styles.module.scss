@@ -1,0 +1,52 @@
+@use 'assets/styles/variables' as *;
+
+.footer {
+  box-sizing: border-box;
+  width: $width-full;
+  padding-inline: $space-section-inner-padding-inline;
+  background-color: $color-footer-bg;
+  color: $color-text-white;
+
+  &-inner {
+    box-sizing: border-box;
+    width: $width-full;
+    max-width: $layout-section-inner-max-width;
+    margin-inline: auto;
+    padding-block: $space-footer-padding-block;
+    padding-inline: $space-0;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-0;
+    width: $width-full;
+  }
+
+  &-content-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $space-footer-columns-gap;
+    width: $width-full;
+  }
+
+  &-content-bottom {
+    width: $width-full;
+  }
+
+  @include below($breakpoint-tablet) {
+    &-inner {
+      padding-block: $space-section-padding-block-mobile;
+    }
+
+    &-content-top {
+      flex-direction: column;
+      gap: $space-gutter-lg;
+    }
+  }
+
+  @include below($breakpoint-mobile) {
+    padding-inline: $space-section-inner-padding-inline-mobile;
+  }
+}

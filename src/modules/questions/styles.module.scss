@@ -1,0 +1,152 @@
+@use 'assets/styles/variables' as *;
+
+.questions {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: $width-full;
+  overflow-x: hidden;
+  background-color: $color-navy;
+  color: $color-text-white;
+
+  &-content {
+    box-sizing: border-box;
+    width: $width-full;
+    padding-block: $space-questions-padding-block;
+    padding-inline: $space-0;
+  }
+
+  &-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: $space-gutter-lg;
+    width: $width-full;
+    min-width: $space-0;
+  }
+
+  &-copy {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: $space-0;
+    padding-block: $space-questions-copy-padding-block;
+  }
+
+  &-decor {
+    position: absolute;
+    inset: $space-0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    color: $color-questions-decor-lines;
+    opacity: $opacity-questions-decor;
+
+    svg {
+      display: block;
+      width: $width-full;
+      height: $height-full;
+    }
+  }
+
+  &-headline,
+  &-description {
+    position: relative;
+    z-index: 1;
+  }
+
+  &-headline {
+    max-width: $layout-questions-copy-max-width;
+    margin-block-end: $space-questions-copy-gap;
+    overflow-wrap: break-word;
+    text-align: left;
+  }
+
+  &-description {
+    max-width: $layout-questions-copy-max-width;
+    overflow-wrap: break-word;
+    text-align: left;
+  }
+
+  &-form-wrap {
+    min-width: $space-0;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    width: $width-full;
+
+    &-fields {
+      display: flex;
+      flex-direction: column;
+      gap: $form-field-gap;
+      width: $width-full;
+    }
+
+    &-input {
+      height: auto;
+      min-height: auto;
+      padding: $space-questions-input-padding;
+      line-height: $line-height-body;
+    }
+
+    &-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: $form-field-gap;
+      width: $width-full;
+      min-width: $space-0;
+    }
+
+    &-checkbox {
+      margin-block-start: $space-questions-form-checkbox-gap;
+
+      [class*='checkbox-caption'] {
+        color: $color-input-soft;
+
+        span {
+          color: inherit;
+          font-weight: inherit;
+        }
+
+        a {
+          color: $color-input-soft;
+
+          &:hover {
+            text-decoration-color: currentColor;
+          }
+        }
+      }
+    }
+
+    &-submit {
+      margin-block-start: $space-questions-form-submit-gap;
+    }
+  }
+
+  @include below($breakpoint-tablet) {
+    &-content {
+      padding-block: $space-section-inner-padding-block-tablet;
+    }
+
+    &-layout {
+      grid-template-columns: 1fr;
+      gap: $space-gutter-md;
+    }
+
+    &-copy {
+      padding-block: $space-0;
+    }
+
+    &-decor {
+      opacity: $opacity-questions-decor-mobile;
+    }
+  }
+
+  @include below($breakpoint-mobile) {
+    &-form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+}

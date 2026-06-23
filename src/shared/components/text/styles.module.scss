@@ -1,0 +1,304 @@
+@use 'assets/styles/variables' as *;
+
+.text {
+  margin: 0;
+  line-height: $line-height-body;
+
+  &-size-xs {
+    font-size: $text-size-xs;
+  }
+
+  &-size-s {
+    font-size: $text-size-s;
+  }
+
+  &-size-m {
+    font-size: $text-size-m;
+  }
+
+  &-size-lead {
+    font-size: $text-lead-size;
+    line-height: $text-lead-line-height;
+  }
+
+  &-size-display {
+    font-size: $text-display-size;
+    line-height: $text-display-line-height;
+    letter-spacing: $letter-spacing-display-tight;
+  }
+
+  &-size-about-headline {
+    font-size: $text-size-about-headline;
+    line-height: $text-line-about-headline;
+    letter-spacing: $letter-spacing-display-tight;
+  }
+
+  &-size-logistics-title {
+    font-size: $text-size-logistics-title;
+    line-height: $text-line-logistics-title;
+    letter-spacing: $letter-spacing-display-tight;
+    text-align: center;
+  }
+
+  &-size-logistics-description {
+    font-size: $text-size-logistics-description;
+    line-height: $text-line-logistics-description;
+    letter-spacing: $letter-spacing-logistics-description;
+    text-align: center;
+  }
+
+  &-size-logistics-service {
+    font-size: $text-size-logistics-service;
+    line-height: $text-line-logistics-service;
+    letter-spacing: $letter-spacing-logistics-service;
+    text-align: center;
+  }
+
+  &-size-services-headline {
+    font-size: $text-size-services-headline;
+    line-height: $text-line-services-headline;
+    letter-spacing: $letter-spacing-display-tight;
+  }
+
+  &-size-services-card-title {
+    font-size: $text-size-services-card-title;
+    line-height: $text-line-services-card-title;
+    letter-spacing: $letter-spacing-services-card-title;
+  }
+
+  &-size-services-card-description {
+    font-size: $text-size-services-card-description;
+    line-height: $text-line-services-card-description;
+    letter-spacing: $letter-spacing-services-card-description;
+  }
+
+  &-size-benefits-headline {
+    font-size: $text-size-benefits-headline;
+    line-height: $text-line-benefits-headline;
+    letter-spacing: $letter-spacing-display-tight;
+  }
+
+  &-size-benefits-card-number {
+    font-size: $text-size-benefits-card-number;
+    line-height: $text-line-benefits-card-number;
+    vertical-align: middle;
+  }
+
+  &-size-benefits-card-title {
+    font-size: $text-size-benefits-card-title;
+    line-height: $text-line-benefits-card-title;
+    letter-spacing: $letter-spacing-benefits-card-title;
+    vertical-align: middle;
+  }
+
+  &-size-benefits-card-description {
+    font-size: $text-size-benefits-card-description;
+    line-height: $text-line-benefits-card-description;
+    letter-spacing: $letter-spacing-benefits-card-description;
+    vertical-align: middle;
+  }
+
+  &-size-questions-headline {
+    font-size: $text-size-questions-headline;
+    line-height: $text-line-questions-headline;
+    letter-spacing: $letter-spacing-questions-headline;
+  }
+
+  &-size-questions-description {
+    font-size: $text-size-questions-description;
+    line-height: $text-line-questions-description;
+    letter-spacing: $letter-spacing-questions-description;
+  }
+
+  &-size-clients-feedback-headline {
+    font-size: $text-size-clients-feedback-headline;
+    line-height: $text-line-clients-feedback-headline;
+    letter-spacing: $letter-spacing-display-tight;
+  }
+
+  &-size-clients-feedback-quote {
+    font-size: $text-size-clients-feedback-quote;
+    line-height: $text-line-clients-feedback-quote;
+  }
+
+  &-size-clients-feedback-name {
+    font-size: $text-size-clients-feedback-name;
+    line-height: $text-line-clients-feedback-name;
+  }
+
+  &-size-clients-feedback-role {
+    font-size: $text-size-clients-feedback-role;
+    line-height: $text-line-clients-feedback-role;
+  }
+
+  &-size-faq-headline {
+    font-size: $text-size-faq-headline;
+    line-height: $text-line-faq-headline;
+    letter-spacing: $letter-spacing-display-tight;
+  }
+
+  &-size-about-body {
+    font-size: $text-size-about-body;
+    line-height: $text-line-about-body;
+  }
+
+  &-size-stat-value {
+    font-size: $text-size-stat-value;
+    line-height: $text-line-stat-value;
+    letter-spacing: $letter-spacing-display-tight;
+  }
+
+  &-size-stat-label {
+    font-size: $text-size-stat-label;
+    line-height: $text-line-stat-label;
+  }
+
+  &-size-form-label {
+    font-size: $text-size-form-label;
+    line-height: $line-height-body;
+  }
+
+  &-size-form-control {
+    font-size: $text-size-form-control;
+    line-height: $line-height-body;
+  }
+
+  &-size-form-caption {
+    font-size: $text-size-form-caption;
+    line-height: $line-height-body;
+  }
+
+  &-size-form-error {
+    font-size: $text-size-form-error;
+    line-height: $line-height-body;
+  }
+
+  &-size-trail {
+    font-size: $text-size-s;
+    line-height: 6rem;
+    letter-spacing: 0;
+    text-align: left;
+  }
+
+  &-family-open-sans {
+    font-family: $font-family-open-sans;
+  }
+
+  &-family-albert-sans {
+    font-family: $font-family-albert-sans;
+  }
+
+  &-family-poppins {
+    font-family: $font-family-poppins;
+  }
+
+  &-family-plus-jakarta-sans {
+    font-family: $font-family-plus-jakarta-sans;
+  }
+
+  &-color-primary {
+    color: $color-text-white;
+  }
+
+  &-color-secondary {
+    color: $color-navy;
+  }
+
+  &-color-soft {
+    color: $color-text-soft;
+  }
+
+  &-color-body {
+    color: $color-text-body;
+  }
+
+  &-color-muted {
+    color: $color-form-caption;
+  }
+
+  &-color-about-body {
+    color: $color-text-about-body;
+  }
+
+  &-color-input {
+    color: $color-input-text;
+  }
+
+  &-color-input-soft {
+    color: $color-input-soft;
+  }
+
+  &-color-placeholder {
+    color: $color-placeholder;
+  }
+
+  &-color-error {
+    color: $color-error;
+  }
+
+  &-color-link {
+    color: $color-link;
+  }
+
+  &-color-logistics-description {
+    color: $color-logistics-description;
+  }
+
+  &-color-services-card-title {
+    color: $color-services-card-title;
+  }
+
+  &-color-services-description {
+    color: $color-services-description;
+  }
+
+  &-color-questions-description {
+    color: $color-questions-description;
+  }
+
+  &-color-clients-feedback-text {
+    color: $color-clients-feedback-text;
+  }
+
+  &-color-clients-feedback-role {
+    color: $color-clients-feedback-role;
+  }
+
+  &-weight-thick {
+    font-weight: $font-weight-extrabold;
+  }
+
+  &-weight-medium {
+    font-weight: $font-weight-medium;
+  }
+
+  &-weight-bold {
+    font-weight: $font-weight-semibold;
+  }
+
+  &-weight-regular {
+    font-weight: $font-weight-normal;
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
+  }
+
+  @include below($breakpoint-tablet) {
+    &-size-display {
+      font-size: $text-display-size-mobile;
+      line-height: $text-display-line-height-mobile;
+    }
+
+    &-size-about-headline,
+    &-size-services-headline,
+    &-size-benefits-headline,
+    &-size-questions-headline,
+    &-size-clients-feedback-headline,
+    &-size-faq-headline,
+    &-size-logistics-title {
+      font-size: $text-size-section-headline-mobile;
+      line-height: $text-line-section-headline-mobile;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@use 'assets/styles/variables' as *;
+
+.carousel {
+  width: $width-full;
+  min-width: 0;
+
+  &-track {
+    display: flex;
+    gap: $space-carousel-gap;
+    width: $width-full;
+    min-width: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-slide {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+
+  &-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-carousel-nav-gap;
+    flex-shrink: 0;
+  }
+
+  &-nav-button {
+    @include interactive-transition;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $size-carousel-nav-button;
+    height: $size-carousel-nav-button;
+    padding: $space-0;
+    border: $border-width-hairline solid $color-carousel-nav-border;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      border-color: $color-carousel-nav-border-hover;
+    }
+
+    &:focus-visible {
+      outline: $focus-outline-width solid $color-text-white;
+      outline-offset: $focus-outline-offset;
+    }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+  }
+
+  &-nav-button:hover:not(:disabled) &-nav-icon {
+    opacity: $opacity-carousel-nav-icon-hover;
+  }
+
+  &-nav-icon {
+    @include interactive-transition;
+    display: block;
+    width: $size-carousel-nav-icon;
+    height: $size-carousel-nav-icon;
+    filter: brightness(0) invert(1);
+    transform: rotate(45deg);
+
+    &--prev {
+      transform: rotate(-135deg);
+    }
+  }
+
+  @include below($breakpoint-mobile) {
+    &-nav {
+      gap: $space-xs;
+    }
+
+    &-nav-button {
+      width: 10rem;
+      height: 10rem;
+    }
+
+    &-nav-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+}

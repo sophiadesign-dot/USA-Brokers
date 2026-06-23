@@ -1,0 +1,21 @@
+@use 'assets/styles/variables' as *;
+
+.card {
+  @include interactive-transition;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: $space-gutter-md;
+  width: $width-full;
+  max-width: 100%;
+  min-width: $space-0;
+  padding: $space-gutter-md;
+  border-radius: $radius-button;
+  background-color: $color-form-bg;
+  box-shadow: $shadow-form-card;
+
+  @include below($breakpoint-mobile) {
+    gap: $space-sm;
+    padding: $space-sm;
+  }
+}

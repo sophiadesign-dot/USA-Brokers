@@ -1,0 +1,118 @@
+@use 'assets/styles/variables' as *;
+
+.section-wrapper {
+  @include interactive-transition;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: $width-full;
+  overflow: hidden;
+  padding-inline: $space-section-inner-padding-inline;
+  &--padding-hero {
+    padding-block: $space-10xl;
+  }
+
+  &--padding-header-aligned {
+    padding-block: $space-8xl;
+  }
+
+  &--padding-none {
+    padding-block: $space-0;
+  }
+
+  &--min-h-screen {
+    min-height: 100vh;
+  }
+
+  &--min-h-auto {
+    min-height: auto;
+  }
+
+  &-bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+
+    &--contain {
+      object-fit: cover;
+
+      @include below($breakpoint-tablet) {
+        object-fit: contain;
+      }
+    }
+  }
+
+  &-overlay {
+    @include section-background-overlay;
+    z-index: 1;
+
+    &--dark {
+      @include section-background-overlay-dark;
+    }
+  }
+
+  &-inner {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: $width-full;
+    min-width: 0;
+    min-height: 0;
+    max-width: $layout-section-inner-max-width;
+    padding-block: $space-inset-block-start-xl $space-inset-block-end-md;
+    padding-inline: $space-0;
+  }
+
+  &-trail {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: $space-2xs;
+    width: $width-full;
+    max-width: $width-full;
+    margin-bottom: $space-8xl;
+  }
+
+  &-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: $width-full;
+    min-width: 0;
+    max-width: $width-full;
+    min-height: $space-0;
+  }
+
+  @include below($breakpoint-tablet) {
+    &--padding-hero {
+      padding-block: $space-section-padding-block-mobile;
+    }
+
+    &--padding-header-aligned {
+      padding-block: $space-gutter-md;
+    }
+
+    &-inner {
+      padding-block: $space-section-inner-padding-block-tablet;
+      padding-inline: $space-0;
+    }
+
+    &-trail {
+      margin-bottom: $space-gutter-md;
+    }
+  }
+
+  @include below($breakpoint-mobile) {
+    padding-inline: $space-section-inner-padding-inline-mobile;
+  }
+}

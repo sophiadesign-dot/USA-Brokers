@@ -1,0 +1,12 @@
+@use './normalizer';
+@use './variables' as *;
+
+html {
+  font-size: 4px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-sans;
+  font-size: 4rem;
+}

@@ -1,0 +1,127 @@
+@use 'assets/styles/variables' as *;
+
+.benefits {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: $width-full;
+  overflow-x: hidden;
+  background-color: $color-form-bg;
+  background-image: none;
+
+  &-content {
+    box-sizing: border-box;
+    width: $width-full;
+    padding-block: $space-benefits-padding-block;
+    padding-inline: $space-0;
+  }
+
+  &-headline {
+    margin-bottom: $space-benefits-headline-margin-bottom;
+    overflow-wrap: break-word;
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat($layout-benefits-columns, minmax(0, 1fr));
+    gap: $space-benefits-cards-gap;
+    width: $width-full;
+  }
+
+  &-card {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-width: 0;
+    height: $height-benefits-standard-card;
+    padding: $space-benefits-card-padding;
+    border-radius: $radius-benefits-card;
+    background-color: $color-benefits-card-bg;
+    overflow: hidden;
+
+    &--featured {
+      height: $height-benefits-featured-card;
+      background-color: $color-navy;
+    }
+
+    &-image {
+      position: absolute;
+      inset: $space-0;
+      z-index: 0;
+      display: block;
+      width: $width-full;
+      height: $height-full;
+      object-fit: cover;
+      object-position: center;
+      filter: blur($blur-benefits-card-image);
+      transform: scale(1.08);
+      pointer-events: none;
+      transition:
+        filter $transition-duration-default $transition-timing-default,
+        transform $transition-duration-default $transition-timing-default;
+    }
+
+    &--featured:hover &-image,
+    &--featured:focus-within &-image {
+      filter: blur(0);
+      transform: scale(1);
+    }
+
+    &-overlay {
+      position: absolute;
+      inset: $space-0;
+      z-index: 1;
+      background-color: $color-benefits-card-overlay;
+      pointer-events: none;
+    }
+
+    &-number {
+      position: relative;
+      z-index: 2;
+    }
+
+    &-copy {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 0;
+      margin-block-start: $space-lg; /* 20px */
+    }
+
+    &-title {
+      margin-bottom: $space-benefits-card-text-gap;
+    }
+  }
+
+  @include below($breakpoint-grid-lg) {
+    &-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @include below($breakpoint-tablet) {
+    &-content {
+      padding-block: $space-section-inner-padding-block-tablet;
+    }
+  }
+
+  @include below($breakpoint-mobile) {
+    &-grid {
+      grid-template-columns: 1fr;
+    }
+
+    &-card {
+      height: auto;
+      min-height: $height-benefits-standard-card;
+
+      &--featured {
+        min-height: $height-benefits-featured-card;
+      }
+    }
+  }
+}

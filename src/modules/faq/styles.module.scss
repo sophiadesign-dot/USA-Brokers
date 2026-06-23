@@ -1,0 +1,92 @@
+@use 'assets/styles/variables' as *;
+
+.faq {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: $width-full;
+  overflow-x: hidden;
+  background-color: $color-form-bg;
+  background-image: none;
+
+  &-content {
+    box-sizing: border-box;
+    width: $width-full;
+    padding-block: $space-faq-padding-block;
+    padding-inline: $space-0;
+  }
+
+  &-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: start;
+    gap: $space-gutter-lg;
+    width: $width-full;
+    min-width: $space-0;
+  }
+
+  &-copy {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: $space-0;
+    padding-block: $space-faq-copy-padding-block;
+  }
+
+  &-decor {
+    position: absolute;
+    inset: $space-0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    color: $color-faq-decor-lines;
+    opacity: $opacity-faq-decor;
+
+    svg {
+      display: block;
+      width: $width-full;
+      height: $height-full;
+    }
+  }
+
+  &-trail,
+  &-headline {
+    position: relative;
+    z-index: 1;
+  }
+
+  &-trail {
+    display: flex;
+    align-items: center;
+    gap: $space-2xs;
+    margin-block-end: $space-faq-trail-gap;
+  }
+
+  &-headline {
+    max-width: $layout-faq-copy-max-width;
+    overflow-wrap: break-word;
+  }
+
+  &-accordion {
+    min-width: $space-0;
+  }
+
+  @include below($breakpoint-tablet) {
+    &-content {
+      padding-block: $space-section-inner-padding-block-tablet;
+    }
+
+    &-layout {
+      grid-template-columns: 1fr;
+      gap: $space-gutter-md;
+    }
+
+    &-copy {
+      padding-block: $space-0;
+    }
+
+    &-decor {
+      opacity: $opacity-faq-decor-mobile;
+    }
+  }
+}

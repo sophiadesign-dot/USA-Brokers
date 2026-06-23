@@ -1,0 +1,130 @@
+@use 'assets/styles/variables' as *;
+
+.logistics {
+  box-sizing: border-box;
+  width: $width-full;
+  background-color: $color-logistics-section-bg;
+  color: $color-text-white;
+  padding-block: $space-logistics-padding-block-start $space-logistics-padding-block-end;
+
+  &-inner {
+    box-sizing: border-box;
+    width: $width-full;
+    max-width: $layout-logistics-content-max-width;
+    margin-inline: auto;
+    padding: $space-0;
+  }
+
+  &-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-logistics-intro-gap;
+    width: $width-full;
+    margin-inline: auto;
+    margin-bottom: $space-logistics-intro-margin-bottom;
+    text-align: center;
+  }
+
+  &-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat($layout-logistics-panel-columns, $layout-logistics-panel-column-track);
+    align-items: stretch;
+    border-radius: $radius-logistics-panel;
+    border: $border-width-hairline solid $color-logistics-panel-border;
+    background: linear-gradient(
+      180deg,
+      $color-logistics-panel-fill-start 0%,
+      $color-logistics-panel-fill-end 100%
+    );
+    backdrop-filter: blur($blur-logistics-panel);
+    -webkit-backdrop-filter: blur($blur-logistics-panel);
+    isolation: isolate;
+    overflow: hidden;
+
+    /* Закриває лише сегмент рамки у верхньому лівому куті (як у макеті), без conic по всьому периметру */
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: $z-index-logistics-panel-corner-mask;
+      top: -$border-width-hairline;
+      left: -$border-width-hairline;
+      width: calc(#{$radius-logistics-panel} + #{$size-logistics-panel-corner-mask-expand});
+      height: calc(#{$radius-logistics-panel} + #{$size-logistics-panel-corner-mask-expand});
+      pointer-events: none;
+      border-top-left-radius: $radius-logistics-panel;
+      background: radial-gradient(
+        farthest-side at 0 0,
+        $color-logistics-section-bg 96%,
+        transparent 100%
+      );
+    }
+
+    & > * {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  &-feature {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: $space-2xs;
+    min-width: 0;
+    padding: $space-8xl;
+    text-align: center;
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: $border-width-hairline;
+      height: $size-logistics-divider-height-ratio;
+      transform: translateY(-50%);
+      background-color: $color-logistics-panel-border;
+      pointer-events: none;
+    }
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $size-logistics-icon;
+    height: $size-logistics-icon;
+  }
+
+  &-icon-img {
+    display: block;
+    width: $width-full;
+    height: $height-full;
+    object-fit: contain;
+    mix-blend-mode: $mix-blend-mode-logistics-icon;
+  }
+
+  @include below($breakpoint-tablet) {
+    padding-block: $space-section-inner-padding-block-tablet;
+  }
+
+  @include below($breakpoint-tablet-sm) {
+    &-panel {
+      grid-template-columns: $layout-logistics-panel-grid-mobile;
+    }
+
+    &-feature:not(:last-child)::after {
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 50%;
+      width: $size-logistics-divider-width-ratio-mobile;
+      height: $border-width-hairline;
+      transform: translateX(-50%);
+      background-color: $color-logistics-panel-border;
+    }
+  }
+}

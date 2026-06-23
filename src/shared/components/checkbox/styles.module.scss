@@ -1,0 +1,136 @@
+@use 'assets/styles/variables' as *;
+
+.checkbox {
+  width: 100%;
+
+  &-shell {
+    position: relative;
+    width: 100%;
+  }
+
+  &-row {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    cursor: pointer;
+
+    &--disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  &-box {
+    position: relative;
+    flex-shrink: 0;
+    width: $space-md;
+    height: $space-md;
+    border: $border-width-strong solid $color-input-border;
+    border-radius: $radius-form-field;
+    background-color: $color-form-bg;
+    transition:
+      border-color $transition-duration-default $transition-timing-default,
+      background-color $transition-duration-default $transition-timing-default;
+
+    &:has(:focus-visible) {
+      outline: $focus-outline-width solid $color-primary-dark;
+      outline-offset: $focus-outline-offset;
+    }
+
+    &:has(.checkbox-control:checked) {
+      border-color: $color-navy;
+      background-color: $color-navy;
+    }
+
+    &--error {
+      border-color: $color-error;
+    }
+  }
+
+  &-control {
+    position: absolute;
+    inset: $space-0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    margin: $space-0;
+    padding: $space-0;
+    border: $border-width-none;
+    border-radius: $radius-form-field;
+    opacity: 0;
+    cursor: pointer;
+    appearance: none;
+
+    &:focus {
+      outline: $border-width-none;
+    }
+
+    &:focus-visible {
+      outline: $border-width-none;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &-mark {
+    position: absolute;
+    inset: $space-0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-text-white;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.88);
+    transition:
+      opacity $transition-duration-default $transition-timing-default,
+      transform $transition-duration-default $transition-timing-default;
+
+    &-icon {
+      width: 76%;
+      height: 76%;
+    }
+  }
+
+  &-control:checked ~ &-mark {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &-caption {
+    flex: 1 1 0;
+    min-width: $space-0;
+
+    a {
+      color: $color-checkbox-label-link;
+      font-weight: $font-weight-semibold;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 0.15em;
+      transition: text-decoration-color $transition-duration-default $transition-timing-default;
+
+      &:hover {
+        text-decoration-color: currentColor;
+      }
+
+      span {
+        color: inherit;
+        font-weight: inherit;
+      }
+    }
+  }
+
+  &-error {
+    position: absolute;
+    top: 100%;
+    left: $space-0;
+    right: $space-0;
+    z-index: 1;
+    margin-top: $space-form-error-margin-top;
+    text-align: right;
+    pointer-events: none;
+  }
+}

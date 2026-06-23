@@ -1,0 +1,73 @@
+@use 'assets/styles/variables' as *;
+
+.main-hero {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &-inner {
+    @include below($breakpoint-tablet) {
+      padding-block-start: $space-10xl; /* 120px */
+      padding-block-end: $space-section-inner-padding-block-tablet;
+    }
+  }
+
+  &-layout {
+    @include interactive-transition;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: $space-gutter-lg;
+    width: $width-full;
+    margin-inline: auto;
+    min-width: $space-0;
+  }
+
+  &-copy {
+    display: flex;
+    flex-direction: column;
+    gap: $space-gutter-md;
+    min-width: $space-0;
+  }
+
+  &-card {
+    min-width: $space-0;
+    max-width: 100%;
+  }
+
+  @include below($breakpoint-tablet) {
+    &-layout {
+      grid-template-columns: 1fr;
+      gap: $space-gutter-md;
+    }
+  }
+}
+
+.hero-form {
+  display: flex;
+  flex-direction: column;
+  gap: $form-field-gap;
+  width: 100%;
+
+  &-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $form-field-gap;
+    width: 100%;
+    min-width: $space-0;
+
+    &--full {
+      grid-template-columns: 1fr;
+    }
+
+    &--checkbox {
+      margin-top: -2rem;
+    }
+  }
+
+  @include below($breakpoint-mobile) {
+    &-row:not(&-row--full) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

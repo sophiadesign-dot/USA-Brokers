@@ -1,0 +1,38 @@
+@use 'assets/styles/variables' as *;
+
+.request-quote {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-0;
+  min-width: $space-0;
+
+  &-logo {
+    display: block;
+    width: $size-logo-width;
+    height: $size-logo-height;
+    object-fit: contain;
+  }
+
+  &-tagline {
+    max-width: $layout-request-quote-tagline-max-width;
+    margin: $space-0;
+    margin-block-start: $space-request-quote-logo-tagline-gap;
+    font-size: $text-size-s;
+    line-height: 6rem; /* 24px */
+    letter-spacing: 0;
+    color: $color-text-white;
+  }
+
+  &-button {
+    margin-block-start: $space-request-quote-tagline-button-gap;
+  }
+
+  @include below($breakpoint-tablet) {
+    width: $width-full;
+
+    &-button {
+      width: $width-full;
+    }
+  }
+}
